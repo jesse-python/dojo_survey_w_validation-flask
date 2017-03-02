@@ -8,10 +8,24 @@
 </head>
 <body>
   <h1>Submitted Info</h1>
-  <h2>Name: {{name}}</h2>
-  <h2>Location: {{location}}</h2>
-  <h2>Language: {{language}}</h2>
-  <h2>Comment: {{comment}}</h2>
+  {% with name = get_flashed_messages(category_filter=['name']) %}
+    {% if name %}
+      {% for msg in name %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <h2>Name: {{session['name']}}</h2>
+  <h2>Location: {{session['location']}}</h2>
+  <h2>Language: {{session['language']}}</h2>
+  {% with  comm = get_flashed_messages(category_filter=['comm']) %}
+    {% if  comm %}
+      {% for msg in comm %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <h2>Comment: {{session['comment']}}</h2>
   <a href="/">Go Back</a>
 </body>
 </html>

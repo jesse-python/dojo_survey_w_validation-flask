@@ -10,9 +10,21 @@ def index():
 
 @app.route('/process', methods=['POST'])
 def process():
+    session['name'] = request.form['name']
+    session['location'] = request.form['location']
+    session['language'] = request.form['language']
+    session['comment'] = request.form['comment']
     if len(request.form['name']) < 1:
-        flash("Name cannot be empty!")
-
+        # print "working"
+        flash(u"Name cannot be empty!", 'name')
+    if request.form['comment']:
+        print "should work"
+        print len(request.form['comment'])
+    if len(request.form['comment']) < 1:
+        print "working"
+        flash(u"Hey, you need to write in a comment here!", 'comm')
+    if len(request.form['comment']) > 120:
+        flash(u"Your comment is too long.", 'comm')
     return render_template('result.html')
 
 app.run(debug=True)
