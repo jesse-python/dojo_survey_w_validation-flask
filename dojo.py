@@ -15,11 +15,7 @@ def process():
     session['language'] = request.form['language']
     session['comment'] = request.form['comment']
     if len(request.form['name']) < 1:
-        # print "working"
         flash(u"Name cannot be empty!", 'name')
-    if request.form['comment']:
-        print "should work"
-        print len(request.form['comment'])
     if len(request.form['comment']) < 1:
         print "working"
         flash(u"Hey, you need to write in a comment here!", 'comm')
